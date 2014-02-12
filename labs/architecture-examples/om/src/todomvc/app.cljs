@@ -84,32 +84,37 @@
 
 (defn toggle-all [e app]
   (let [checked (.. e -target -checked)]
-    (om/transact! app :todos
+    (om/transact! ::toggle-all app :todos
       (fn [todos] (vec (map #(assoc % :completed checked) todos))))))
 
 (defn handle-new-todo-keydown [e app owner]
   (when (== (.-which e) ENTER_KEY)
     (let [new-field (om/get-node owner "newField")]
       (when-not (string/blank? (.. new-field -value trim))
-        (om/transact! app :todos conj
-          {:id (guid)
-           :title (.-value new-field)
-           :completed false})
+        (om/transact! ::create-todo app :todos
+          (fn [todos]
+            (conj todos
+              {:id (guid)
+               :title (.-value new-field)
+               :completed false})))
         (set! (.-value new-field) "")))
     false))
 
 (defn destroy-todo [app {:keys [id]}]
-  (om/transact! app :todos
+  (om/transact! ::delete-todo app :todos
     (fn [todos] (into [] (remove #(= (:id %) id) todos)))))
 
-(defn edit-todo [app {:keys [id]}] (om/update! app :editing id))
+(defn edit-todo [app {:keys [id]}]
+  (om/update! ::edit-todo app :editing id))
 
-(defn save-todos [app] (om/update! app :editing nil))
+(defn save-todos [app]
+  (om/update! ::save-todo app :editing nil))
 
-(defn cancel-action [app] (om/update! app :editing nil))
+(defn cancel-action [app]
+  (om/update! ::cancel app :editing nil))
 
 (defn clear-completed [app]
-  (om/transact! app :todos
+  (om/transact! ::clear app :todos
     (fn [todos] (into [] (remove :completed todos)))))
 
 (defn handle-event [type app val]

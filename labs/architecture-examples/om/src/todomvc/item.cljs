@@ -18,7 +18,7 @@
   (when-let [edit-text (om/get-state owner :edit-text)]
     (if-not (string/blank? (.trim edit-text))
       (do
-        (om/update! todo :title edit-text)
+        (om/update! ::edit-title todo :title edit-text)
         (put! comm [:save @todo]))
       (put! comm [:destroy @todo])))
   false)
@@ -69,7 +69,7 @@
             (dom/input
               #js {:className "toggle" :type "checkbox"
                    :checked (and (:completed todo) "checked")
-                   :onChange (fn [_] (om/transact! todo :completed #(not %)))})
+                   :onChange (fn [_] (om/transact! ::toggle todo :completed #(not %)))})
             (dom/label
               #js {:onDoubleClick #(edit % todo owner comm)}
               (:title todo))
