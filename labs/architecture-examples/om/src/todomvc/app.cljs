@@ -102,11 +102,11 @@
   (om/transact! app :todos
     (fn [todos] (into [] (remove #(= (:id %) id) todos)))))
 
-(defn edit-todo [app {:keys [id]}] (om/update! app assoc :editing id))
+(defn edit-todo [app {:keys [id]}] (om/update! app :editing id))
 
-(defn save-todos [app] (om/update! app dissoc :editing))
+(defn save-todos [app] (om/update! app :editing nil))
 
-(defn cancel-action [app] (om/update! app dissoc :editing))
+(defn cancel-action [app] (om/update! app :editing nil))
 
 (defn clear-completed [app]
   (om/transact! app :todos
@@ -153,7 +153,8 @@
             (main app comm)
             (footer app active completed comm)))))))
 
-(om/root app-state todo-app (.getElementById js/document "todoapp"))
+(om/root todo-app app-state
+  {:target (.getElementById js/document "todoapp")})
 
 (dom/render
   (dom/div nil

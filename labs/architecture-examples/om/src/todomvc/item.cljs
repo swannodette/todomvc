@@ -18,7 +18,7 @@
   (when-let [edit-text (om/get-state owner :edit-text)]
     (if-not (string/blank? (.trim edit-text))
       (do
-        (om/update! todo assoc :title edit-text)
+        (om/update! todo :title edit-text)
         (put! comm [:save @todo]))
       (put! comm [:destroy @todo])))
   false)
