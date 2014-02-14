@@ -91,16 +91,19 @@
   (when (== (.-which e) ENTER_KEY)
     (let [new-field (om/get-node owner "newField")]
       (when-not (string/blank? (.. new-field -value trim))
-        (om/transact! app :todos conj
-          {:id (guid)
-           :title (.-value new-field)
-           :completed false})
+        (let [new-todo {:id (guid)
+                        :title (.-value new-field)
+                        :completed false}]
+          (om/transact! app :todos
+            #(conj % new-todo)
+            [:create new-todo]))
         (set! (.-value new-field) "")))
     false))
 
 (defn destroy-todo [app {:keys [id]}]
   (om/transact! app :todos
-    (fn [todos] (into [] (remove #(= (:id %) id) todos)))))
+    (fn [todos] (into [] (remove #(= (:id %) id) todos)))
+    [:delete id]))
 
 (defn edit-todo [app {:keys [id]}] (om/update! app :editing id))
 
