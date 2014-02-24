@@ -51,7 +51,7 @@
     (init-state [_]
       {:edit-text (:title todo)})
     om/IDidUpdate
-    (did-update [_ _ _ _]
+    (did-update [_ _ _]
       (when (and (:editing todo)
                  (om/get-state owner :needs-focus))
         (let [node (om/get-node owner "editField")

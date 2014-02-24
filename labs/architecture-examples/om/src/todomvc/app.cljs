@@ -138,7 +138,7 @@
     om/IWillUpdate
     (will-update [_ _ _] (set! render-start (now)))
     om/IDidUpdate
-    (did-update [_ _ _ _]
+    (did-update [_ _ _]
       (store "todos" todos)
       (let [ms (- (.valueOf (now)) (.valueOf render-start))]
         (set! (.-innerHTML (js/document.getElementById "message")) (str ms "ms"))))
