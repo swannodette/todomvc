@@ -31,4 +31,6 @@
                 :pretty-print false
                 :output-wrapper false
                 :preamble ["react/react.min.js"]
-                :externs ["react/externs/react.js"]}}]})
+                :externs ["react/react.js"]
+                :closure-warnings {:externs-validation :off
+                                   :non-standard-jsdoc :off}}}]})
