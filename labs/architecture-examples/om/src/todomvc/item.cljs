@@ -62,7 +62,7 @@
     om/IRenderState
     (render-state [_ {:keys [comm] :as state}]
       (let [class (cond-> ""
-                    (:completed todo) (str "completed")
+                    (:completed todo) (str "completed ")
                     (:editing todo)   (str "editing"))]
         (dom/li #js {:className class :style (hidden (:hidden todo))}
           (dom/div #js {:className "view"}
