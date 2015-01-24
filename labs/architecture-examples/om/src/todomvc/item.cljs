@@ -19,13 +19,12 @@
     (if-not (string/blank? (.trim edit-text))
       (do
         (om/update! todo :title edit-text)
-        (put! comm [:save @todo]))
-      (put! comm [:destroy @todo])))
+        (put! comm [:save todo]))
+      (put! comm [:destroy todo])))
   false)
 
 (defn edit [e todo owner comm]
-  (let [todo @todo
-        node (om/get-node owner "editField")]
+  (let [node (om/get-node owner "editField")]
     (put! comm [:edit todo])
     (doto owner
       (om/set-state! :needs-focus true)
@@ -33,7 +32,7 @@
 
 (defn key-down [e todo owner comm]
   (condp == (.-keyCode e)
-    ESCAPE_KEY (let [todo @todo]
+    ESCAPE_KEY (do
                  (om/set-state! owner :edit-text (:title todo))
                  (put! comm [:cancel todo]))
     ENTER_KEY  (submit e todo owner comm)
@@ -75,7 +74,7 @@
               (:title todo))
             (dom/button
               #js {:className "destroy"
-                   :onClick (fn [_] (put! comm [:destroy @todo]))}))
+                   :onClick (fn [_] (put! comm [:destroy todo]))}))
           (dom/input
             #js {:ref "editField" :className "edit"
                  :value (om/get-state owner :edit-text)

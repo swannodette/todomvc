@@ -5,19 +5,22 @@
   :jvm-opts ^:replace ["-Xms4g" "-Xmx4g" "-server"]
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2280"]
-                 [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
+                 [org.clojure/clojurescript "0.0-2725"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [secretary "0.4.0"]
-                 [om "0.7.0"]]
+                 [org.omcljs/om "0.8.4"]]
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
 
   :source-paths ["src"]
 
+  :clean-targets ["out" "out-adv" "app.js"]
+
   :cljsbuild { 
     :builds [{:id "dev"
               :source-paths ["src"]
               :compiler {
+                :main todomvc.app
                 :output-to "app.js"
                 :output-dir "out"
                 :optimizations :none
@@ -26,11 +29,8 @@
               :source-paths ["src"]
               :compiler {
                 :output-to "app.js"
+                :output-dir "out-adv"
                 :optimizations :advanced
                 :elide-asserts true
                 :pretty-print false
-                :output-wrapper false
-                :preamble ["react/react.min.js"]
-                :externs ["react/react.js"]
-                :closure-warnings {:externs-validation :off
-                                   :non-standard-jsdoc :off}}}]})
+                :output-wrapper false}}]})
