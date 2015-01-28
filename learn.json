@@ -1711,13 +1711,13 @@
 			"heading": "Official Resources",
 			"links": [{
 				"name": "Tutorial",
-				"url": "http://swannodette.github.io"
+				"url": "https://github.com/swannodette/om/wiki/Basic-Tutorial"
 			}, {
 				"name": "Philosophy",
-				"url": "http://swannodette.github.io"
+				"url": "https://github.com/swannodette/om/wiki/Conceptual-overview"
 			}, {
 				"name": "Common Questions",
-				"url": "http://swannodette.github.io"
+				"url": "https://github.com/swannodette/om/wiki/Troubleshooting"
 			}, {
 				"name": "Support",
 				"url": "http://swannodette.github.io"
