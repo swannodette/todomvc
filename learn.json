@@ -1719,8 +1719,8 @@
 				"name": "Common Questions",
 				"url": "https://github.com/swannodette/om/wiki/Troubleshooting"
 			}, {
-				"name": "Support",
-				"url": "http://swannodette.github.io"
+				"name": "Issue Tracker",
+				"url": "https://github.com/swannodette/om/issues"
 			}]
 		}]
 	},
