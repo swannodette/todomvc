@@ -3,8 +3,8 @@
                    [secretary.macros :refer [defroute]])
   (:require [goog.events :as events]
             [cljs.core.async :refer [put! <! chan]]
-            [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]
+            [om.core :as om]
+            [om.dom :as dom]
             [secretary.core :as secretary]
             [todomvc.utils :refer [pluralize now guid store hidden]]
             [clojure.string :as string]

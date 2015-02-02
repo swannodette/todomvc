@@ -2,8 +2,8 @@
   (:require [cljs.core.async :refer [>! put!]]
             [todomvc.utils :refer [now hidden]]
             [clojure.string :as string]
-            [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]))
+            [om.core :as om]
+            [om.dom :as dom]))
 
 (def ESCAPE_KEY 27)
 (def ENTER_KEY 13)

@@ -5,10 +5,10 @@
   :jvm-opts ^:replace ["-Xms4g" "-Xmx4g" "-server"]
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2725"]
+                 [org.clojure/clojurescript "0.0-2760"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [secretary "0.4.0"]
-                 [org.omcljs/om "0.8.4"]]
+                 [org.omcljs/om "0.8.8"]]
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
 
