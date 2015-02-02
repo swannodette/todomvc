@@ -3,4 +3,7 @@ target
 .DS_Store
 tasks/node_modules
 labs/architecture-examples/om/out
+labs/architecture-examples/om/out-adv
 labs/architecture-examples/om/target
+*init.clj
+.lein*
